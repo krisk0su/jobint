@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap");
+
+input {
+  margin: 1em 1.2em;
+  mask-size: cover;
+  height: 3em;
+  width: 3em;
+}
+input:disabled {
+  /*?*/
+}
+
+label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/**/
+.upper-part {
+  display: flex;
+  flex-direction: row;
+}
+
+.lower-part {
+  display: flex;
+  flex-direction: row;
+}
+
+.section {
+  margin: 1em;
+  padding: 1em;
+}
+
+.two {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+}
+
+.three > div {
+  display: flex;
+}
+
+.special-font {
+  font-family: "Quicksand", sans-serif;
+}
+
+.label input {
+  mask: url("./static/ic_checkbox_unchecked.svg");
+}
+
+.blue-tick input {
+  mask: url("./static/ic_checkbox_checked.svg");
+}
+.black-tere input {
+  mask: url("./static/ic_checkbox_half.svg");
+}
