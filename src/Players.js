@@ -60,8 +60,6 @@ const getPlayersStats = (passes) => {
   return players;
 };
 
-  return players;
-};
 const calculateWinRatio = (player) => {
   const { completed, incompleted } = player;
   const total = completed + incompleted;
