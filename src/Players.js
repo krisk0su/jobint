@@ -14,13 +14,10 @@ const getInitialValues = (receiver) => {
 const addPlayerData = (newPlayer, stats) => {
   const { passes } = newPlayer;
   const { result, distance } = stats;
-  let playerStats = {
-    ...newPlayer,
-  };
   switch (result) {
     case COMPLETE: {
       return {
-        ...playerStats,
+        ...newPlayer,
         completed: newPlayer.completed + 1,
         passes: [...passes, distance],
       };
@@ -28,7 +25,7 @@ const addPlayerData = (newPlayer, stats) => {
     case INCOMPLETE:
     case INTERECPTION: {
       return {
-        ...playerStats,
+        ...newPlayer,
         incompleted: newPlayer.incompleted + 1,
         passes: [...passes, distance],
       };
@@ -37,7 +34,7 @@ const addPlayerData = (newPlayer, stats) => {
 };
 const getPlayersStats = (passes) => {
   const players = passes.reduce((red, currentPlayer, index) => {
-    const { receiver, distance, result } = currentPlayer;
+    const { receiver } = currentPlayer;
     const doesPlayerExists = red.some((plr) => plr.receiver === receiver);
     //if the player does not exist
     if (!doesPlayerExists) {
@@ -65,6 +62,19 @@ const getPlayersStats = (passes) => {
 
   return players;
 };
+const calculateWinRatio = (player) => {
+  const { completed, incompleted } = player;
+  const total = completed + incompleted;
+  return { winRatio: +((completed / total) * 100).toFixed(2) };
+};
+const getPlayersWinRatio = (players) => {
+  return players.map((plr) => {
+    return {
+      ...plr,
+      ...calculateWinRatio(plr),
+    };
+  });
+};
 const getMostCompleteConfig = (players) => {
   const winner = players.reduce(
     (red, currentPlayer) => {
@@ -82,20 +92,6 @@ const getMostCompleteConfig = (players) => {
   };
 };
 
-const calculateWinRatio = (player) => {
-  const { completed, incompleted } = player;
-  const total = completed + incompleted;
-  return { winRatio: +((completed / total) * 100).toFixed(2) };
-};
-
-const getPlayersWinRatio = (players) => {
-  return players.map((plr) => {
-    return {
-      ...plr,
-      ...calculateWinRatio(plr),
-    };
-  });
-};
 const getLongDistancePass = (players) => {
   const winner = players.reduce(
     (red, currentPlayer) => {
