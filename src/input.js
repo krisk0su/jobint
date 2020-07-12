@@ -34,4 +34,8 @@ export const passes = [
     receiver: "Demaryius Thomas",
     distance: 0.4,
   },
+  // {
+  //   result: "interception",
+  //   receiver: "Demaryius Thomas",
+  // },
 ];

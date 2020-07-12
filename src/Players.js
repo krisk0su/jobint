@@ -108,10 +108,37 @@ const getLongDistancePass = (players) => {
     value: winner.longestPass,
   };
 };
+/**
+ * input validator is a function which loops over every single object inside the input
+ * every object is a pass and must contain 3 properties ["result", "receiver", "distance"]
+ * if any pass does not have some of the needed properties the input is invalid and the tasks wont run
+ */
+const inputValidator = (input) => {
+  const properties = ["result", "receiver", "distance"];
 
+  const isInputValid = input.reduce((red, currentPass) => {
+    const hasAllProperties = properties.reduce((red2, currentProp) => {
+      if (!currentPass.hasOwnProperty(currentProp)) {
+        red2 = false;
+      }
+      return red2;
+    }, true);
+    if (!hasAllProperties) red = false;
+
+    return red;
+  }, true);
+
+  return isInputValid;
+};
 export const Players = (props) => {
   const { passes } = props;
-
+  const isInputValid = inputValidator(passes);
+  if (!isInputValid)
+    return (
+      <h1>
+        Please check your input objects some of them have missing properties
+      </h1>
+    );
   //aggregated player
   const players = getPlayersStats(passes);
   /**
