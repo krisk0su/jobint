@@ -43,22 +43,22 @@ const getPlayersStats = (passes) => {
         ...getInitialValues(receiver),
       };
       //adding data to the player
-      newPlayer = {
-        ...addPlayerData(newPlayer, currentPlayer),
-      };
+
       red.push(newPlayer);
-    } else {
-      //players exists
-      //finding player`s index
-      const playerIndex = red.findIndex((plr) => plr.receiver === receiver);
-      //adding data to the currentPlayer
-      const existingPlayer = {
-        ...addPlayerData(red[playerIndex], currentPlayer),
-      };
-      red[playerIndex] = existingPlayer;
     }
+    //finding player`s index
+    const playerIndex = red.findIndex((plr) => plr.receiver === receiver);
+    //adding data to the currentPlayer
+    const existingPlayer = {
+      ...addPlayerData(red[playerIndex], currentPlayer),
+    };
+    red[playerIndex] = existingPlayer;
+
     return red;
   }, []);
+
+  return players;
+};
 
   return players;
 };
