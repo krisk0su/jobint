@@ -1,9 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Players } from "./Players";
-import logo from "./logo.svg";
-import "./App.css";
 import { CheckBox } from "./checkbox";
+import { passes } from "./input";
+import "./App.css";
+import logo from "./logo.svg";
 
 function App() {
   return (
@@ -29,7 +30,7 @@ function App() {
       */}
         <Switch>
           <Route exact path="/">
-            <Players />
+            <Players passes={passes} />
           </Route>
           <Route exact path="/ch">
             <CheckBox />
